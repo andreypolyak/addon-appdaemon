@@ -6,18 +6,18 @@
 declare arch
 
 # Creates initial AppDaemon configuration in case it is non-existing
-if ! bashio::fs.directory_exists '/config/appdaemon'; then
-    cp -R /root/appdaemon /config/appdaemon \
+if ! bashio::fs.directory_exists '/config/appdaemon_test'; then
+    cp -R /root/appdaemon /config/appdaemon_test \
         || bashio::exit.nok 'Failed to create initial AppDaemon configuration'
 fi
 
 # Raise warning if the directory exists, but the appdaemon config is missing.
-if ! bashio::fs.file_exists '/config/appdaemon/appdaemon.yaml'; then
+if ! bashio::fs.file_exists '/config/appdaemon_test/appdaemon.yaml'; then
     bashio::log.fatal
-    bashio::log.fatal "Seems like the /config/appdaemon folder exists,"
+    bashio::log.fatal "Seems like the /config/appdaemon_test folder exists,"
     bashio::log.fatal "however appdaemon.yaml wasn't found."
     bashio::log.fatal
-    bashio::log.fatal "Remove or rename the /config/appdaemon folder"
+    bashio::log.fatal "Remove or rename the /config/appdaemon_test folder"
     bashio::log.fatal "and the add-on will create a new and fresh one"
     bashio::log.fatal "for you."
     bashio::log.fatal
